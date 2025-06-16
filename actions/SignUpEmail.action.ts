@@ -22,6 +22,8 @@ export async function SignUpEmailAction(formData: FormData) {
 
     return { error: null };
   } catch (error) {
+    console.error("Sign up error:", error);
+    
     if (error instanceof APIError) {
       const errCode = error.body ? (error.body.code as ErrorCode) : "UNKNOWN";
 
@@ -30,11 +32,15 @@ export async function SignUpEmailAction(formData: FormData) {
           return {
             error: "This email is already registered. Try logging in instead.",
           };
+        case "INVALID_EMAIL":
+          return { error: "Please enter a valid email address" };
+        case "WEAK_PASSWORD":
+          return { error: "Password is too weak. Please choose a stronger password" };
         default:
-          return { error: error.message };
+          return { error: error.message || "Registration failed" };
       }
     }
 
-    return { error: "Internal Server Error", status: 500 };
+    return { error: "Internal Server Error" };
   }
 }
