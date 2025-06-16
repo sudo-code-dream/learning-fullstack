@@ -22,6 +22,7 @@ export async function SignUpEmailAction(formData: FormData) {
 
     return { error: null };
   } catch (error) {
+    console.log("SignUp Error", error);
     if (error instanceof APIError) {
       const errCode = error.body ? (error.body.code as ErrorCode) : "UNKNOWN";
 

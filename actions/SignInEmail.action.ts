@@ -2,7 +2,6 @@
 
 import { auth, ErrorCode } from "@/lib/auth";
 import { headers } from "next/headers";
-import { NextResponse } from "next/server";
 import { APIError } from "better-auth/api";
 import { redirect } from "next/navigation";
 
