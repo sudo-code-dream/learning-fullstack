@@ -35,6 +35,6 @@ export async function SignUpEmailAction(formData: FormData) {
       }
     }
 
-    return { error: "Internal Server Error" };
+    
   }
 }
