@@ -3,7 +3,7 @@ import { APIError } from "better-auth/api";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 import { createAuthMiddleware } from "better-auth/api";
-import { admin, captcha, customSession, magicLink } from "better-auth/plugins";
+import { admin, customSession, magicLink } from "better-auth/plugins";
 
 import { prisma } from "./prisma";
 import { hashPassword, verifyPassword } from "./argon2";
@@ -168,6 +168,8 @@ const options = {
 
 export const auth = betterAuth({
   ...options,
+  origin: process.env.BETTER_AUTH_URL,
+  secret: process.env.BETTER_AUTH_SECRET,
   plugins: [
     ...(options.plugins ?? []),
     customSession(async ({ user, session }) => {
