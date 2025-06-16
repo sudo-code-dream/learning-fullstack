@@ -17,7 +17,7 @@ const SignIn = () => {
       <div className='space-y-4'>
         <MagicLinkLoginForm />
         <SignInForm />
-
+    
         <p className='text-muted-foreground text-sm'>
           Don&apos;t have an account?{" "}
           <Link href='/auth/sign-up' className='hover:text-foreground'>
